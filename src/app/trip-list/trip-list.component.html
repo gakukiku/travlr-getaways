@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row mb-4">
+    <div class="col">
+      <h2>Available Trips</h2>
+      <button class="btn btn-primary" (click)="onAddTrip()">
+        Add New Trip
+      </button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div *ngFor="let trip of trips" class="col-md-4 mb-3">
+      <app-trip-card 
+        [trip]="trip"
+        (editTrip)="onEditTrip($event)"
+        (deleteTrip)="onDeleteTrip($event)">
+      </app-trip-card>
+    </div>
+  </div>
+  
+  <div *ngIf="trips.length === 0" class="text-center">
+    <p>No trips available at the moment.</p>
+  </div>
+</div>

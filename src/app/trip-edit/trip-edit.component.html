@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>{{ isEditMode ? 'Edit Trip' : 'Add New Trip' }}</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #tripForm="ngForm">
+            <div class="mb-3">
+              <label for="title" class="form-label">Trip Title</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="title" 
+                name="title"
+                [(ngModel)]="trip.title" 
+                required
+                #title="ngModel">
+              <div *ngIf="title.invalid && title.touched" class="text-danger">
+                Trip title is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="location" 
+                name="location"
+                [(ngModel)]="trip.location" 
+                required
+                #location="ngModel">
+              <div *ngIf="location.invalid && location.touched" class="text-danger">
+                Location is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="price" 
+                name="price"
+                [(ngModel)]="trip.price" 
+                required
+                #price="ngModel">
+              <div *ngIf="price.invalid && price.touched" class="text-danger">
+                Price is required.
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button 
+                type="button" 
+                class="btn btn-secondary me-md-2" 
+                (click)="onCancel()">
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary"
+                [disabled]="tripForm.invalid">
+                {{ isEditMode ? 'Update Trip' : 'Add Trip' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
